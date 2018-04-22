@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Effective JavaScript: Frogger</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Game</title>
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+  </head>
+  <body>
+    <div class="container">
+      <div class="modal">
+        <div class="modal-container">
+          <h3>Congratulations, you won!!!</h3>
+
+          <p>You brought Peach and her friends savely to the other side.<br>They are deeply grateful!</p>
+
+          <div class="timer">
+            Time <span class="timer-minutes"></span>:<span class="timer-seconds"></span>
+          </div>
+
+          <p>Do you want to play again?</p>
+
+          <div class="restart">
+            <i class="fa fa-repeat"></i>
+          </div>
+        </div>
+      </div>
+
+      <header>
+        <h1>Arcade Game</h1>
+      </header>
+
+      <section class="score-panel">
+        <div class="saved">
+          <span class="saved-value">0/0</span> <span> saved</span>
+        </div>
+
+        <div class="timer">
+          <span class="timer-minutes">00</span>:<span class="timer-seconds">00</span>
+        </div>
+
+        <div class="restart">
+          <i class="fa fa-repeat"></i>
+        </div>
+      </section>
+    </div>
+
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
-</body>
+  </body>
 </html>
