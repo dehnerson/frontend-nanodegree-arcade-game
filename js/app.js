@@ -1,3 +1,5 @@
+'use strict'
+
 const MAP_WIDTH = 5;
 const MAP_HEIGHT = 6;
 const MAP_TOP_SAVE_ZONES = 1;
@@ -104,10 +106,10 @@ Player.prototype.update = function() {
   if (!this.isBlocked && this.y < MAP_HEIGHT - MAP_BOTTOM_SAVE_ZONES) {
     for(let i=0; i<allEnemies.length; i++) {
       // First check if player and enemy are on the same row
-      if (allEnemies[i].y === player.y) {
+      if (allEnemies[i].y === this.y) {
         // Then check if the x-position collides
-        if(player.getXPixels() >= allEnemies[i].getXPixels() && player.getXPixels() <= allEnemies[i].getXPixels() + PX_ENEMY_WIDTH) {
-          player.onHit();
+        if(this.getXPixels() >= allEnemies[i].getXPixels() && this.getXPixels() <= allEnemies[i].getXPixels() + PX_ENEMY_WIDTH) {
+          this.onHit();
           break;
         }
       }
@@ -123,14 +125,14 @@ Player.prototype.onHit = function() {
   });
 
   setTimeout(function() {
-    player.resetPosition();
-    player.currentSpriteIdx = 0;
-    player.charMadeItListener(player.currentSpriteIdx, player.sprites.length);
+    this.resetPosition();
+    this.currentSpriteIdx = 0;
+    this.charMadeItListener(this.currentSpriteIdx, this.sprites.length);
 
     allEnemies.forEach(function(enemy) {
       enemy.resetSpeed();
     });
-  }, 1000);
+  }.bind(this), 1000);
 };
 
 Player.prototype.onMadeIt = function() {
@@ -210,12 +212,12 @@ let player;
 
 
 // Character made it callback
-onCharMadeIt = function(savedChars, totalChars) {
+let onCharMadeIt = function(savedChars, totalChars) {
   elmntSavedChars.textContent = savedChars + '/' + totalChars;
 };
 
 // Game won callback to show the winning modal
-onGameWon = function() {
+let onGameWon = function() {
   clearInterval(timerInterval);
   timerInterval = null;
 
@@ -226,7 +228,7 @@ onGameWon = function() {
 
 // newGame function that will be used to start the game when the page is loaded
 // and when the user hits the restart button
-newGame = function() {
+let newGame = function() {
   // Instantiate player and enemies
   player = new Player(onCharMadeIt, onGameWon);
   allEnemies = [new Enemy(), new Enemy(), new Enemy(), new Enemy(), new Enemy()];
