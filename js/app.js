@@ -247,7 +247,7 @@ let newGame = function() {
   timerInterval = setInterval(function() {
     if(parseInt(elmntTimerSec.textContent) === 59) {
       elmntTimerSec.textContent = '00';
-      elmntTimerMin.textContent = ('0' + (parseInt(timerMinElement.textContent) + 1)).slice(-2);
+      elmntTimerMin.textContent = ('0' + (parseInt(elmntTimerMin.textContent) + 1)).slice(-2);
     }
     else {
       elmntTimerSec.textContent = ('0' + (parseInt(elmntTimerSec.textContent) + 1)).slice(-2);
